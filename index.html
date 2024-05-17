@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUDS System</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="styles/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container mt-3">
+      <h1 class="text-center">CRUDS System</h1>
+
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="productName"
+          list="nameList"
+          placeholder="ex.toshiba"
+        />
+        <label for="productName">Product Name :</label>
+
+        <datalist id="nameList">
+          <option value="Iphone" />
+          <option value="Oppo" />
+          <option value="Samsung" />
+          <option value="Toshiba" />
+        </datalist>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          id="productPrice"
+          type="number"
+          class="form-control"
+          placeholder="ex.3000"
+        />
+        <label for="productPrice">Product Price :</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          id="productCategory"
+          type="text"
+          autocomplete="off"
+          list="categoryList"
+          class="form-control"
+          placeholder="ex.Tv"
+        />
+        <label for="productCategory">Product Category :</label>
+        <datalist id="categoryList">
+          <option value="Mobile" />
+          <option value="Laptop" />
+          <option value="TV" />
+          <option value="Screens" />
+        </datalist>
+      </div>
+
+      <div class="form-floating mb-3">
+        <textarea
+          type="text"
+          class="form-control"
+          id="productDesc"
+          placeholder="ex.Good"
+        ></textarea>
+        <label for="productDesc">Product Desc :</label>
+      </div>
+
+      <button onclick="addProduct()" class="btn btn-outline-info">
+        Add Product
+      </button>
+    </div>
+
+    <!-- Cards -->
+
+    <div class="container my-4">
+      <div id="row" class="row g-4"></div>
+    </div>
+
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- JS -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
