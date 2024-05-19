@@ -67,8 +67,15 @@
         <label for="productDesc">Product Desc :</label>
       </div>
 
-      <button onclick="addProduct()" class="btn btn-outline-info">
+      <button id="addBtn" onclick="addProduct()" class="btn btn-outline-info">
         Add Product
+      </button>
+      <button
+        id="updateBtn"
+        onclick="updateProduct()"
+        class="btn text-bg-info d-none"
+      >
+        Update Product
       </button>
     </div>
 

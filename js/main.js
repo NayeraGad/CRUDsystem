@@ -3,8 +3,12 @@ var productPriceInput = document.getElementById("productPrice");
 var productCatInput = document.getElementById("productCategory");
 var productDescInput = document.getElementById("productDesc");
 var rowDataElement = document.getElementById("row");
+var addBtn = document.getElementById("addBtn");
+var updateBtn = document.getElementById("updateBtn");
 
 var pList = [];
+
+var updateIndex = -1;
 
 if (localStorage.getItem("products") !== null) {
   pList = JSON.parse(localStorage.getItem("products"));
@@ -14,7 +18,7 @@ if (localStorage.getItem("products") !== null) {
 }
 
 function addProduct() {
-  if (productNameInput == "") {
+  if (productNameInput.value === "") {
     return;
   }
 
@@ -26,10 +30,17 @@ function addProduct() {
   };
 
   pList.push(product);
+  clearInput();
   displayProduct();
-  console.log(pList);
 
   localStorage.setItem("products", JSON.stringify(pList));
+}
+
+function clearInput() {
+  productNameInput.value = "";
+  productPriceInput.value = "";
+  productCatInput.value = "";
+  productDescInput.value = "";
 }
 
 function displayProduct() {
@@ -51,9 +62,9 @@ function displayProduct() {
             <p>
               ${pList[i].description}
             </p>
-            <span class="d-block mb-2 fs-6 fw-lighter"> $${pList[i].price}</span>
+            <span class="d-block mb-2 fs-6 text-danger fw-lighter"> $${pList[i].price}</span>
             <button onclick="deleteProduct(${i})" class='btn btn-danger btn-sm mb-3'>Delete Product</button>
-            <button onclick="updateProduct(${i})" class='btn btn-info btn-sm mb-3'>Update Product</button>
+            <button onclick="setUpFormToUpdate(${i})" class='btn btn-info btn-sm mb-3'>Update Product</button>
           </div>
         </div>`;
   }
@@ -64,5 +75,31 @@ function deleteProduct(index) {
   pList.splice(index, 1);
 
   displayProduct();
+  localStorage.setItem("products", JSON.stringify(pList));
+}
+
+function setUpFormToUpdate(index) {
+  updateIndex = index;
+
+  productNameInput.value = pList[index].name;
+  productPriceInput.value = pList[index].price;
+  productCatInput.value = pList[index].category;
+  productDescInput.value = pList[index].description;
+
+  updateBtn.classList.remove("d-none");
+  addBtn.classList.add("d-none");
+}
+
+function updateProduct() {
+  var index = updateIndex;
+
+  pList[index].name = productNameInput.value;
+  pList[index].price = productPriceInput.value;
+  pList[index].category = productCatInput.value;
+  pList[index].description = productDescInput.value;
+
+  clearInput();
+  displayProduct();
+
   localStorage.setItem("products", JSON.stringify(pList));
 }
