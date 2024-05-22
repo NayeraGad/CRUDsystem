@@ -14,10 +14,11 @@
       <div class="form-floating mb-3">
         <input
           type="text"
-          class="form-control"
           id="productName"
+          class="form-control"
           list="nameList"
           placeholder="ex.toshiba"
+          oninput="validateInput('productName', 'name', 'nameAlert')"
         />
         <label for="productName">Product Name :</label>
 
@@ -27,6 +28,11 @@
           <option value="Samsung" />
           <option value="Toshiba" />
         </datalist>
+
+        <div id="nameAlert" class="alert alert-danger d-none my-2">
+          Product name should start with an uppercase letter and minimum of 4
+          letters
+        </div>
       </div>
 
       <div class="form-floating mb-3">
@@ -35,8 +41,13 @@
           type="number"
           class="form-control"
           placeholder="ex.3000"
+          oninput="validateInput('productPrice', 'price', 'priceAlert')"
         />
         <label for="productPrice">Product Price :</label>
+
+        <div id="priceAlert" class="alert alert-danger d-none my-2">
+          Minimum 2 numbers and do not start by 0
+        </div>
       </div>
 
       <div class="form-floating mb-3">
@@ -47,6 +58,7 @@
           list="categoryList"
           class="form-control"
           placeholder="ex.Tv"
+          oninput="validateInput('productCategory', 'category', 'catAlert')"
         />
         <label for="productCategory">Product Category :</label>
         <datalist id="categoryList">
@@ -55,16 +67,25 @@
           <option value="TV" />
           <option value="Screens" />
         </datalist>
+
+        <div id="catAlert" class="alert alert-danger d-none my-2">
+          Choose a category from the list
+        </div>
       </div>
 
       <div class="form-floating mb-3">
         <textarea
           type="text"
-          class="form-control"
           id="productDesc"
+          class="form-control"
           placeholder="ex.Good"
+          oninput="validateInput('productDesc', 'description', 'descAlert')"
         ></textarea>
         <label for="productDesc">Product Desc :</label>
+
+        <div id="descAlert" class="alert alert-danger d-none my-2">
+          Type at least 3 letters
+        </div>
       </div>
 
       <button id="addBtn" onclick="addProduct()" class="btn btn-outline-info">
@@ -82,6 +103,16 @@
     <!-- Cards -->
 
     <div class="container my-4">
+      <div class="mb-3">
+        <input
+          id="productSearch"
+          type="search"
+          class="form-control"
+          placeholder="Search by name"
+          oninput="searchByName()"
+        />
+      </div>
+
       <div id="row" class="row g-4"></div>
     </div>
 
